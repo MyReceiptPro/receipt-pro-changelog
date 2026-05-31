@@ -2,6 +2,66 @@
 
 All notable changes to Receipt Pro are documented here.
 
+## [2.1.9 / 3.0.7] — 2026-05-23
+
+_Safari app 3.0.4_
+
+### Added
+- **Taiwan Costco support (costco.com.tw)**: Receipt Pro now reads purchase history from Taiwan Costco accounts. Handles the Traditional-Chinese (zh-TW) site, monthly statement periods, 統一發票 (Unified Invoice) receipt numbers, 11-digit member numbers, and cash / 找零 + 黑鑽聯名卡 payment formats
+- Country is auto-detected from the costco.com.tw domain; currency, tax (VAT-included), and date formats adapt automatically
+
+### Changed
+- **Excel export — refund split**: Returns and refunds now carry their negative sign through subtotal / tax / total correctly, so reports reconcile to the penny
+- **Item capture — GraphQL primary overlay**: Reworked the line-item pipeline so data the page already loaded is the primary source, improving completeness on receipts where the on-screen text was partial
+
+### Fixed
+- Several Taiwan-specific timing and period-switching issues found during live testing: empty-month period switches no longer stall the scan, and modal content is fully loaded before it is read
+
+### Compliance — Safari
+- The Safari build keeps all purchases on Apple's in-app purchase system (no external payment links), per App Store guidelines
+
+### Release
+- Chrome `2.1.5` → `2.1.9` · Extension `3.0.x` → `3.0.7` · Safari app `3.0.4`
+
+## [3.0.3] — 2026-04-23 — Safari & iOS App Store launch
+
+### Added
+- **Now on the App Store**: Receipt Pro is live for macOS and iOS (iPhone / iPad) on the Apple App Store, alongside the Chrome Web Store
+- **Apple In-App Purchase**: The MAX subscription on Safari / iOS now goes through Apple's in-app purchase system, with restore-purchase support
+- **Onboarding**: New single-screen onboarding for the iOS and macOS host apps, guiding users through enabling the Safari extension
+- **App icon redesign**: Refreshed flat green "R" icon, unified across all sizes and platforms
+
+### Changed
+- Safari MAX pricing is presented through Apple ($9.99/year on Apple; Chrome and web remain $9.97/year)
+
+### Security
+- Hardened the purchase-verification path with server-side validation and replay protection (implementation details kept internal)
+
+## [2.1.5] — 2026-04-20
+
+### Changed
+- **Brand & store alignment**: Version and store metadata aligned with the "MyReceiptPro" App Store branding
+- **Listing metadata**: Manifest description trimmed to meet store length limits; macOS app category added
+
+### Release
+- Chrome `2.1.4` → `2.1.5`
+
+## [2.1.4] — 2026-04-16
+
+### Fixed — Parser (Critical)
+- **Cashier-void / bottle-deposit rows**: Modal lines such as `IVY2 WHITE 0.00 B` (cashier voids, deposit shadow lines) are now filtered at the source, so they no longer mis-route item details, inflate Excel totals, or trigger false "bulk receipt" warnings
+- **GraphQL amount guard**: Defense-in-depth so an explicit $0 line is never overwritten by matched data
+- **Deduplication prefers newer data**: Re-scanning after a fix now always keeps the cleaner, newer record instead of pinning stale data from an earlier scan
+
+### Changed — Safari
+- **Pre-submission cleanup**: Removed design / mock / preview files from the Safari bundle (same class of issue as the earlier Chrome remote-code cleanup); the bundle now ships only legitimate runtime files
+- **Privacy disclosure**: Added a "What Data We Access" section to the in-extension privacy policy
+- Safari modal-close timing increased (Safari-only) to prevent receipt content bleeding between modals
+- Replaced native confirm dialogs with a custom modal on Safari (WebKit silently blocks confirm/alert/prompt in extension popups)
+
+### Release
+- Chrome `2.1.3` → `2.1.4`; Apple Developer account approved, all build targets switched to full Apple signing
+
 ## [2.1.3] — 2026-04-11
 
 ### Changed
