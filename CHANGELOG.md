@@ -2,6 +2,36 @@
 
 All notable changes to Receipt Pro are documented here.
 
+## [2.1.10 / 3.0.8] — 2026-06-09
+
+_Safari app 3.0.5_
+
+### Fixed — Data integrity (Critical)
+- **Date-range scans preserve history**: Scanning a narrow date range no longer removes previously saved receipts outside that range — a ranged scan is now an update, never a delete
+- **Online orders merge**: Online-order scans now merge with existing saved orders by order number instead of replacing them, so a partial or stopped scan can't wipe earlier results
+- **CSV refunds stay numeric**: Negative refund amounts in CSV exports are no longer treated as text, so Excel SUM totals include refunds correctly
+- **Cross-receipt guard**: A slow page response from the previous receipt can no longer attach its details to the wrong receipt during Executive Scan
+
+### Fixed — Scanning
+- Stop button now reliably reaches the scan even after switching to another tab; stop is also honored during scan preparation and pagination
+- Canadian French warehouse names (e.g. Trois-Rivières, Québec) are now recognized
+- Cross-year statement periods are filtered correctly in online-order scans
+- Taiwan: member number is now recognized during scan preparation (faster scans, correct per-member storage); NT$ currency formatting now displays correctly throughout reports and exports
+- Single-digit order dates (e.g. 3/9/2026) sort and export correctly; date-column sorting fixed across year boundaries
+- Two equal-amount receipts from the same store in the same minute are no longer merged when receipt numbers differ
+
+### Fixed — Subscription & licensing
+- Subscription expiry is now enforced consistently on-device
+- Safari: Apple in-app purchase subscribers are correctly recognized everywhere in the extension, including multi-account limits
+- Safari: the popup now updates to MAX immediately after an Apple in-app purchase — no Safari restart needed
+- Safari: a failed entitlement save can no longer report a successful purchase
+
+### Security
+- Server-side licensing and purchase-verification hardening (implementation details kept internal)
+
+### Release
+- Chrome `2.1.9` → `2.1.10` · Extension `3.0.7` → `3.0.8` · Safari app `3.0.4` → `3.0.5`
+
 ## [2.1.9 / 3.0.7] — 2026-05-23
 
 _Safari app 3.0.4_
