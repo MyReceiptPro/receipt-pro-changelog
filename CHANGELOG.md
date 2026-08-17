@@ -2,6 +2,31 @@
 
 All notable changes to Receipt Pro are documented here.
 
+## [3.0.9] — 2026-08-16
+
+_Chrome 3.0.9 · Extension 3.0.9 · Safari app 3.0.9 — all platforms now share one version number_
+
+### Added
+- **Korea Costco support (costco.co.kr)**: Receipt Pro now reads purchase history from Korea Costco accounts. Handles the Korean-language site, monthly statement periods, 11-digit member numbers, the 면세 / 과세 / 부가세 tax breakdown, and 카드 / 현금 / 잔돈 payment formats
+- Country is auto-detected from the costco.co.kr domain; currency (₩, whole won), tax handling, and date formats adapt automatically
+- **Korean Executive membership** (이그제큐티브) is recognized, so Executive members in Korea get the same 2% reward analysis as US and Canada
+- Korean store names are shown in short form (e.g. 양재점 #853) rather than the full legal entity name
+
+### Changed
+- **Tax-exempt template export is available for United States and Canada only.** Taiwan and Korea accounts export online order details without the Tax Exempt Summary sheet, since neither region has an equivalent tax-exempt / resale-certificate process. The dedicated tax-exempt button is hidden outside the US and Canada
+- Korea data retention follows Costco Korea's own limit: warehouse receipts are available for the past 6 months
+
+### Fixed
+- **Refunds in Taiwan were counted as purchases.** Taiwanese refund and return receipts were read with a positive amount, so they were added to spending instead of being subtracted, and did not appear in the Refunds section of reports. Taiwan totals, the refund breakdown, and the "Is Refund" column in Excel exports are now correct. **Taiwan members should re-run a scan to correct previously saved totals**
+- Refund amounts are now read correctly regardless of where the minus sign appears on the receipt, across all supported countries
+
+### Known limitations — Korea
+- Costco Korea gas station (주유소) receipts are not yet recognized and will be skipped
+- Korea online orders are not yet supported; warehouse receipts only
+
+### Release
+- Chrome `2.1.10` → `3.0.9` · Extension `3.0.8` → `3.0.9` · Safari app `3.0.5` → `3.0.9`
+
 ## [2.1.10 / 3.0.8] — 2026-06-09
 
 _Safari app 3.0.5_
