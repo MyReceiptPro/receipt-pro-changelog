@@ -2,9 +2,9 @@
 
 All notable changes to Receipt Pro are documented here.
 
-## [3.0.9] — 2026-08-16
+## [3.1] — 2026-08-17
 
-_Chrome 3.0.9 · Extension 3.0.9 · Safari app 3.0.9 — all platforms now share one version number_
+_Chrome 3.1 · Extension 3.1 · Safari app 3.1 — all platforms now share one version number_
 
 ### Added
 - **Korea Costco support (costco.co.kr)**: Receipt Pro now reads purchase history from Korea Costco accounts. Handles the Korean-language site, monthly statement periods, 11-digit member numbers, the 면세 / 과세 / 부가세 tax breakdown, and 카드 / 현금 / 잔돈 payment formats
@@ -20,12 +20,28 @@ _Chrome 3.0.9 · Extension 3.0.9 · Safari app 3.0.9 — all platforms now share
 - **Refunds in Taiwan were counted as purchases.** Taiwanese refund and return receipts were read with a positive amount, so they were added to spending instead of being subtracted, and did not appear in the Refunds section of reports. Taiwan totals, the refund breakdown, and the "Is Refund" column in Excel exports are now correct. **Taiwan members should re-run a scan to correct previously saved totals**
 - Refund amounts are now read correctly regardless of where the minus sign appears on the receipt, across all supported countries
 
+### Improved — Scanning feedback
+- **You can now tell when a scan has finished without watching it.** Start a scan, switch to another tab, and the extension icon shows live progress and then a green check when it completes. The Costco tab's title is also marked, so a finished scan is visible from the tab strip
+- **Reopening the extension after a scan shows the result, not a blank start screen.** Previously, if the popup was closed when a scan finished, reopening it looked as though no scan had ever run — the only way to reach the report was through the menu below
+- The completion screen gains a **Back to Menu** button, so it can be dismissed without opening a report
+- Each scan now opens its own report tab instead of quietly refreshing an existing one, making it obvious that new data has arrived
+
+### Changed — Reports match what you scanned
+- **An Executive Scan with a date range now produces a report and an Excel export covering only that range.** Previously the export also carried every receipt from earlier scans, including dates you had not asked for. Your full history is still saved — the report header shows the range in use and offers a one-click switch to see everything
+- Exported file names carry the range, e.g. `receipt_pro_20240108_20240816.xlsx`
+
+### Fixed — Share Card
+- **The Share Card can be saved to your computer again.** On macOS the Share button opened the system share sheet, which offers Photos, Messages and AirDrop but no way to save a file, and no download option was shown. Download is now always available, with Share alongside it where the system supports it
+
+### Changed — Permissions
+- **The extension no longer requests the "Read your browsing history" permission.** It previously scanned every open tab to find its own report page; it now tracks only the tab it opened itself. No feature was removed
+
 ### Known limitations — Korea
 - Costco Korea gas station (주유소) receipts are not yet recognized and will be skipped
 - Korea online orders are not yet supported; warehouse receipts only
 
 ### Release
-- Chrome `2.1.10` → `3.0.9` · Extension `3.0.8` → `3.0.9` · Safari app `3.0.5` → `3.0.9`
+- Chrome `2.1.10` → `3.1` · Extension `3.0.8` → `3.1` · Safari app `3.0.5` → `3.1`
 
 ## [2.1.10 / 3.0.8] — 2026-06-09
 
