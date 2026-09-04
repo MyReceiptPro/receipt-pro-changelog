@@ -6,9 +6,9 @@ All notable changes to Receipt Pro are documented here.
 
 _Chrome 3.1 · Extension 3.1 · Safari app 3.1 — all platforms will share one version number_
 
-> **Not yet published.** 3.1 is code-complete and tested, but the release is held so
-> that two membership-related issues can ship in the same update. See the repository
-> notes for details.
+> **Not yet published.** The two membership issues 3.1 was held for are now fixed and
+> are listed below, along with the work that followed them. The release is waiting on a
+> full regression across real US / Canada / Taiwan / Korea accounts.
 
 ### Added
 - **Korea Costco support (costco.co.kr)**: Receipt Pro now reads purchase history from Korea Costco accounts. Handles the Korean-language site, monthly statement periods, 11-digit member numbers, the 면세 / 과세 / 부가세 tax breakdown, and 카드 / 현금 / 잔돈 payment formats
@@ -39,6 +39,31 @@ _Chrome 3.1 · Extension 3.1 · Safari app 3.1 — all platforms will share one 
 
 ### Changed — Permissions
 - **The extension no longer requests the "Read your browsing history" permission.** It previously scanned every open tab to find its own report page; it now tracks only the tab it opened itself. No feature was removed
+
+### Fixed — Your membership and your data (the two issues 3.1 was held for)
+- **A replaced membership card no longer looks like "my data was erased."** Receipt Pro identified your account by the card number printed on whichever receipt a scan happened to sample first. If you had ever been issued a new card, one account split into two separate sets of data — on the account this was found on, 26 receipts sat under the old card and 409 under the new one, and whichever you scanned last was the only one you could see. Your account is now identified from the membership account itself, so all of your receipts stay together no matter which card was swiped
+- **An Executive Scan now starts from the oldest period Costco actually offers you.** The default start date was "two years ago," so a scan run after clearing your data silently began in 2024 and left out older receipts that Costco was still serving — 435 receipts where a Quick Scan of the same account found 454. The date range now comes from Costco's own period list, which differs by account and country. Editing either date still overrides it, as before
+- **Excel exports now show the card each receipt was actually swiped on.** Every row previously carried your current card number. The Executive Summary gains a **Membership Cards** block listing each card, its receipt count, date span and spend, with the most recent marked as your current card. Receipts from a Quick Scan, which never opens a receipt, read `Not captured` rather than being filled in with a guess
+
+### Added — Where you shopped
+- **Reports and the Share Card now show state, province, city or 시/도 for every supported country, not just the United States.** The state was previously read by taking the last word of the warehouse name, which only ever worked for US-shaped names — Taiwanese and Korean warehouses could never match, and the Share Card then displayed a fabricated "1 State" when it had recognized none. One real card read "90 Warehouses / 1 States"
+- United States and Canada resolve from the warehouse itself on an Executive Scan, and from a 770-location warehouse list on a Quick Scan. A dozen US place names belong to two different states and are shown as such (e.g. `ambiguous:CA|CO`) rather than being assigned to one
+- Taiwan counts cities (臺北市 / 新北市 / 臺中市 …) and Korea counts 시/도, both from the operators' own public store lists
+- **When a location cannot be established, nothing is shown.** No number is invented to fill the space
+
+### Changed — The interface follows the Costco site you are on
+- **A Taiwanese member is now served Traditional Chinese.** The interface previously followed your browser's language and had only a Simplified Chinese pack, so `zh-TW` was served Simplified — worse than serving English. costco.com.tw is now Traditional Chinese and costco.co.kr is Korean regardless of system language, with Taiwan wording throughout (匯出, 資料, 賣場, not the Simplified equivalents). United States and Canada continue to follow the browser
+
+### Fixed — Scanning outside the United States
+- **Taiwan scans saved nothing at all.** Costco Taiwan removed a dash from its receipt list rows, and every row stopped matching — the scan ran to completion and saved zero receipts. A scan that finds receipt buttons but can read none of them now stops with an error instead of reporting success
+- **Taiwan and Korea only ever scanned the first page.** The "showing X of Y" readout was read in English only, so pagination stopped after page one
+- **A slow statement period is no longer skipped in silence.** When switching periods timed out, that period was passed over unparsed — and the slow periods are exactly the ones with receipts in them
+- Online-order scanning is United States and Canada only, and now says so instead of returning an empty result on Taiwan and Korea
+- French-language Canadian accounts can start a warehouse scan (the site, its tabs and its period labels are recognized in French); the receipt list itself has not been verified in French yet, so that scan declines up front rather than producing an empty report
+
+### Fixed — Share Card
+- **The Share Card shows your account's own currency.** Four figures were hard-coded to `$`, so a card made after a Taiwanese scan showed NT$ amounts with a dollar sign
+- **The monthly average is divided by the time that has actually passed.** It previously divided by the span between your first and last receipt, with no minimum — three receipts bought on one day produced a monthly average 30× the total spent
 
 ### Known limitations — Korea
 - Costco Korea gas station (주유소) receipts are not yet recognized and will be skipped
