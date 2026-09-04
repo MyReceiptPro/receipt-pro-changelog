@@ -2,13 +2,15 @@
 
 All notable changes to Receipt Pro are documented here.
 
-## [3.1] — Unreleased
+## [3.15] — Unreleased
 
-_Chrome 3.1 · Extension 3.1 · Safari app 3.1 — all platforms will share one version number_
+_Chrome 3.15 · Extension 3.15 · Safari app 3.15 — all platforms share one version number_
 
-> **Not yet published.** The two membership issues 3.1 was held for are now fixed and
-> are listed below, along with the work that followed them. The release is waiting on a
-> full regression across real US / Canada / Taiwan / Korea accounts.
+> **Ready to publish.** The two membership issues this release was held for are fixed
+> and listed below, along with the work that followed them. Regression across real
+> US / Canada / Taiwan / Korea accounts is complete.
+>
+> (Released as 3.15. The entry was written while the version was still numbered 3.1.)
 
 ### Added
 - **Korea Costco support (costco.co.kr)**: Receipt Pro now reads purchase history from Korea Costco accounts. Handles the Korean-language site, monthly statement periods, 11-digit member numbers, the 면세 / 과세 / 부가세 tax breakdown, and 카드 / 현금 / 잔돈 payment formats
@@ -70,7 +72,7 @@ _Chrome 3.1 · Extension 3.1 · Safari app 3.1 — all platforms will share one 
 - Korea online orders are not yet supported; warehouse receipts only
 
 ### Release
-- Chrome `2.1.10` → `3.1` · Extension `3.0.8` → `3.1` · Safari app `3.0.5` → `3.1`
+- Chrome `2.1.10` → `3.15` · Extension `3.0.8` → `3.15` · Safari app `3.0.5` → `3.15`
 
 ## [2.1.10 / 3.0.8] — 2026-06-09
 
