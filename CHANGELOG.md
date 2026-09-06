@@ -57,8 +57,10 @@ _Chrome 3.17 · Extension 3.17 · Safari app 3.17 (build 13) — from this relea
 
 > **The first App Store release since 3.0.4 in May.** The iOS and macOS builds went to
 > review on 2026-09-04 and were approved on 2026-09-05; Chrome 3.17 reached the store the
-> same day. 3.16 shipped to Chrome only — its Apple builds were never submitted, so the
-> app goes from 3.0.4 straight to 3.17.
+> same day. It carries everything the App Store had not yet received: the Safari fixes
+> listed under 2026-06-09, whose 3.0.5 build was made but never submitted, and the whole
+> of 3.16, which shipped to Chrome only. That is why the app goes from 3.0.4 straight to
+> 3.17.
 
 ### Fixed — A scan stopped by Costco no longer throws away what it read
 - **A scan that Costco rate-limited used to end with nothing saved.** The rule was
@@ -185,7 +187,12 @@ _Chrome 3.16 · Extension 3.16_
 
 ## [2.1.10 / 3.0.8] — 2026-06-09
 
-_Safari app 3.0.5_
+_Chrome 2.1.10 · Extension 3.0.8 — Safari app 3.0.5 was built but never submitted_
+
+> **The Safari items below did not reach the App Store on this date.** The 3.0.5 app
+> build was made and then not submitted, so the App Store stayed on 3.0.4 until 3.17 in
+> September. Everything Safari-specific in this entry reached iPhone, iPad and Mac there.
+> The Chrome and extension changes shipped on 2026-06-09 as listed.
 
 ### Fixed — Data integrity (Critical)
 - **Date-range scans preserve history**: Scanning a narrow date range no longer removes previously saved receipts outside that range — a ranged scan is now an update, never a delete
@@ -211,7 +218,8 @@ _Safari app 3.0.5_
 - Server-side licensing and purchase-verification hardening (implementation details kept internal)
 
 ### Release
-- Chrome `2.1.9` → `2.1.10` · Extension `3.0.7` → `3.0.8` · Safari app `3.0.4` → `3.0.5`
+- Chrome `2.1.9` → `2.1.10` · Extension `3.0.7` → `3.0.8` · Safari app built as `3.0.5`
+  but not submitted — the App Store remained on `3.0.4`
 
 ## [2.1.9 / 3.0.7] — 2026-05-23
 
