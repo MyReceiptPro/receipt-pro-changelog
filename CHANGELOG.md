@@ -2,15 +2,123 @@
 
 All notable changes to Receipt Pro are documented here.
 
-## [3.16] — Unreleased
+## [3.18] — Unreleased
 
-_Chrome 3.16 · Extension 3.16 · Safari app 3.16 — all platforms share one version number_
+_Chrome 3.18 · Extension 3.18 — the Apple builds carry 3.18 but have not been submitted_
 
-> **Ready to publish.** The two membership issues this release was held for are fixed
-> and listed below, along with the work that followed them. Regression across real
+> **Chrome moves to the app interface.** Until now Chrome and the Apple apps looked
+> different: Chrome carried the original design, while the Safari extension and the
+> iOS/macOS apps have used the current one since 3.0.0 in April. From 3.18 Chrome uses
+> the same design. Nothing about your saved data or your licence changes.
+>
+> Chrome 3.18 was submitted on 2026-09-06 and is pending review; it publishes
+> automatically once approved. The Apple builds of 3.18 have not been submitted yet —
+> 3.17 is still in App Store review.
+
+### Changed — One interface everywhere
+- **Chrome now uses the same interface as the Safari and iOS/macOS apps**, which have
+  run on it for the past five months. Your saved receipts, reports and licence carry
+  over untouched: the update is installed over the existing extension, so nothing has
+  to be re-entered and no re-scan is needed because of the change
+
+### Fixed — A rate-limited scan no longer saves half a receipt
+- **Some receipts were saved with only the date, store and total.** When Costco rate-
+  limited a scan, the detail view for a receipt could fail to open. The date, store,
+  time and total were already read from the list page, so the receipt was saved — but
+  without its store number, payment method or line items — and the scan still reported
+  success. On the account this was found on, 11 receipts in one continuous stretch were
+  saved this way
+- **In the export those rows looked almost ordinary.** They had a store name and an
+  amount but no `Store #`, so a reconciliation that keys on the store number skipped
+  them and their amounts without saying anything — while the Summary sheet counted them.
+  Two sheets in one workbook disagreed, and neither was wrong
+- **Now the detail view is retried** after a short pause, at the slower pace the
+  extension already adopts once Costco has refused a request. If it still cannot be
+  read, the receipt is marked, and the statement period is recorded so your next scan
+  reads it again in full
+- **Excel says so.** A receipt saved without its details is flagged
+  `⚠ details unavailable` in the Payment column, and the Summary sheet states how many
+  there are and what they add up to — so the two sheets can no longer differ without
+  explaining why
+- **This applies to data you have already saved.** The export decides from the shape of
+  each record, not from a flag written at scan time, so exporting an older data set now
+  points these receipts out too. Re-run a scan over the months concerned to fill in what
+  is missing
+
+### Fixed — Licences
+- Re-entering the same licence key no longer changes your expiry date
+
+### Release
+- Chrome `3.17` → `3.18` · Extension `3.17` → `3.18` · Safari app `3.17` → `3.18`
+
+## [3.17] — 2026-09-05
+
+_Chrome 3.17 · Extension 3.17 · Safari app 3.17 (build 13) — from this release all platforms share one version number_
+
+> **The first App Store release since 3.0.5 in June.** The iOS and macOS builds went to
+> review on 2026-09-04 and were approved on 2026-09-05; Chrome 3.17 reached the store the
+> same day. 3.16 shipped to Chrome only — its Apple builds were never submitted, so the
+> app goes from 3.0.5 straight to 3.17.
+
+### Fixed — A scan stopped by Costco no longer throws away what it read
+- **A scan that Costco rate-limited used to end with nothing saved.** The rule was
+  "if any request was refused and any statement period came back empty, refuse to save"
+  — and empty periods are ordinary (a quarter spent outside the country is empty), so in
+  practice a single refusal during a long scan discarded the whole run. After a long
+  wait, a paying member was left with no data and no explanation
+- **Now the period is read again.** A period that comes back empty while Costco is
+  refusing requests is re-read after a ten-second pause — the only way to tell "nothing
+  was bought here" apart from "that request was blocked". If the second read succeeds,
+  the scan simply continues
+- **If it is refused again, what was collected is still saved** and the affected periods
+  are recorded with your data. Your next scan is forced to read the full history rather
+  than only what is newer than your latest receipt, so the gap is filled instead of being
+  skipped forever
+- **The extension no longer reports success after being stopped.** Previously the badge,
+  the tab notification and the popup all said the scan was complete. They now say Costco
+  temporarily limited access, how many periods still need re-reading, and to try again in
+  a few minutes
+- **The pace slows automatically after a refusal**: the gap between receipts increases
+  from 300 ms up to 2.4 s and does not go back down for the rest of that scan. Retries
+  and the clicks that follow them are requests too, and pressing on at full speed only
+  extends the cool-down
+- This wording was added to all six interface languages. Without it, everyone would have
+  been shown the English text
+
+### Fixed — There was no way to buy from the report page
+- **A free member who clicked upgrade on the report page saw only a licence key box.**
+  There was no purchase button anywhere on that page — at exactly the moment the export
+  was blocked and the member most wanted to pay. The popup offered a purchase route; the
+  report page did not. Both now offer the same route
+
+### Changed — Apple builds
+- **Purchases and restores on iPhone, iPad and Mac go through the App Store only.**
+  Previously, if the in-app purchase check failed for any reason, the app fell back to a
+  licence key box — an unlocking route outside the App Store. Apple builds no longer show
+  that box under any circumstance; when the purchase check fails they explain that
+  purchases and restores are handled by the App Store instead of leaving a blank space
+- Prices differ between the App Store and the web on purpose: the App Store has no
+  tier at the web price point, so each platform shows its own real price
+
+### Changed — Version numbers
+- **Chrome, the Safari extension and the Safari/iOS/macOS app now share one version
+  number.** Three different builds had been carrying the same number, which is how a
+  stale package nearly went out on 2026-09-03
+
+### Release
+- Chrome `3.16` → `3.17` · Extension `3.16` → `3.17` · Safari app `3.0.5` → `3.17` (build 13)
+
+## [3.16] — 2026-09-04 — Chrome only
+
+_Chrome 3.16 · Extension 3.16_
+
+> **Chrome only.** The two membership issues this release was held for are fixed and
+> listed below, along with the work that followed them. Regression across real
 > US / Canada / Taiwan / Korea accounts is complete.
 >
-> (Released as 3.16. The entry was written while the version was still numbered 3.1.)
+> The Apple builds of 3.16 were never submitted — everything below reached iPhone, iPad
+> and Mac in 3.17 instead. (The entry was written while the version was still numbered
+> 3.1, and renumbered twice as the release slipped.)
 
 ### Added
 - **Korea Costco support (costco.co.kr)**: Receipt Pro now reads purchase history from Korea Costco accounts. Handles the Korean-language site, monthly statement periods, 11-digit member numbers, the 면세 / 과세 / 부가세 tax breakdown, and 카드 / 현금 / 잔돈 payment formats
@@ -72,7 +180,8 @@ _Chrome 3.16 · Extension 3.16 · Safari app 3.16 — all platforms share one ve
 - Korea online orders are not yet supported; warehouse receipts only
 
 ### Release
-- Chrome `2.1.10` → `3.16` · Extension `3.0.8` → `3.16` · Safari app `3.0.5` → `3.16`
+- Chrome `2.1.10` → `3.16` · Extension `3.0.8` → `3.16` · Safari app unchanged at `3.0.5`
+  (the 3.16 Apple builds were not submitted)
 
 ## [2.1.10 / 3.0.8] — 2026-06-09
 
