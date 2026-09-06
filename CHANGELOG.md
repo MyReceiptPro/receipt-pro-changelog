@@ -55,10 +55,10 @@ _Chrome 3.18 · Extension 3.18 — the Apple builds carry 3.18 but have not been
 
 _Chrome 3.17 · Extension 3.17 · Safari app 3.17 (build 13) — from this release all platforms share one version number_
 
-> **The first App Store release since 3.0.5 in June.** The iOS and macOS builds went to
+> **The first App Store release since 3.0.4 in May.** The iOS and macOS builds went to
 > review on 2026-09-04 and were approved on 2026-09-05; Chrome 3.17 reached the store the
 > same day. 3.16 shipped to Chrome only — its Apple builds were never submitted, so the
-> app goes from 3.0.5 straight to 3.17.
+> app goes from 3.0.4 straight to 3.17.
 
 ### Fixed — A scan stopped by Costco no longer throws away what it read
 - **A scan that Costco rate-limited used to end with nothing saved.** The rule was
@@ -106,7 +106,7 @@ _Chrome 3.17 · Extension 3.17 · Safari app 3.17 (build 13) — from this relea
   stale package nearly went out on 2026-09-03
 
 ### Release
-- Chrome `3.16` → `3.17` · Extension `3.16` → `3.17` · Safari app `3.0.5` → `3.17` (build 13)
+- Chrome `3.16` → `3.17` · Extension `3.16` → `3.17` · Safari app `3.0.4` → `3.17` (build 13)
 
 ## [3.16] — 2026-09-04 — Chrome only
 
@@ -180,7 +180,7 @@ _Chrome 3.16 · Extension 3.16_
 - Korea online orders are not yet supported; warehouse receipts only
 
 ### Release
-- Chrome `2.1.10` → `3.16` · Extension `3.0.8` → `3.16` · Safari app unchanged at `3.0.5`
+- Chrome `2.1.10` → `3.16` · Extension `3.0.8` → `3.16` · Safari app unchanged at `3.0.4`
   (the 3.16 Apple builds were not submitted)
 
 ## [2.1.10 / 3.0.8] — 2026-06-09
