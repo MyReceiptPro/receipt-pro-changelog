@@ -4,16 +4,17 @@ All notable changes to Receipt Pro are documented here.
 
 ## [3.18] — Unreleased
 
-_Chrome 3.18 · Extension 3.18 — the Apple builds carry 3.18 but have not been submitted_
+_Chrome 3.18 · Extension 3.18 · Safari app 3.18 (build 14) — submitted on every platform, awaiting review_
 
 > **Chrome moves to the app interface.** Until now Chrome and the Apple apps looked
 > different: Chrome carried the original design, while the Safari extension and the
 > iOS/macOS apps have used the current one since 3.0.0 in April. From 3.18 Chrome uses
 > the same design. Nothing about your saved data or your licence changes.
 >
-> Chrome 3.18 was submitted on 2026-09-06 and is pending review; it publishes
-> automatically once approved. The Apple builds of 3.18 have not been submitted yet —
-> 3.17 is still in App Store review.
+> Submitted on 2026-09-06 to both stores and awaiting review. Chrome is pending review
+> and publishes automatically once approved. The iOS and macOS builds (3.18, build 14)
+> read back as WAITING_FOR_REVIEW, set to release after approval with Apple's phased
+> rollout enabled.
 
 ### Changed — One interface everywhere
 - **Chrome now uses the same interface as the Safari and iOS/macOS apps**, which have
