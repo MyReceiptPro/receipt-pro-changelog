@@ -2,6 +2,44 @@
 
 All notable changes to Receipt Pro are documented here.
 
+## [3.20] — Unreleased
+
+_Chrome 3.19 · Safari extension 3.20 · Safari app 3.20 (build 16) — submitted 2026-09-30, awaiting review_
+
+> Chrome skips to 3.19 and the Apple apps go to 3.20 (3.19 was already used on Apple);
+> both carry the same fixes below.
+
+### Fixed — Unit prices are checked against their own line
+- **Some lines showed a unit price that did not belong to them.** Costco's receipt data
+  reported $50 for a $59.97 WATERPIKFLOS return (08/20/2026), and $12.97 for a -$60
+  price adjustment (08/31/2026). Every unit price is now settled against the line's own
+  quantity and amount: when it fits it is kept; when it doesn't, the exact price that
+  follows from amount ÷ quantity is shown and marked `*`; when no exact price follows,
+  the cell is left blank instead of showing a wrong number. Costco's figure is kept
+- **Product summary shows the latest unit price**, by receipt date and time
+
+### Fixed — Price adjustments are not items, and not bulk receipts
+- A line Costco lists with 0 items (a price adjustment or credit) no longer counts as
+  one item sold, and is no longer labeled "bulk receipt without itemized quantities"
+  in the report, Excel detail sheet, or the accounting export (Completeness, Is Bulk,
+  Data Quality). Receipts that genuinely lack quantities are still flagged
+- Items sold now distinguishes "Costco says 0" from "not found"
+
+### Changed — Every Detailed scan is a full rescan
+- Detailed scans used to be incremental: receipts already saved were not re-read, so a
+  release that fixed the parser changed nothing on rescan. Every Detailed scan now
+  re-reads the whole date range
+
+## [3.19] — 2026-09-29 — Apple only
+
+_Safari extension 3.19 · Safari app 3.19 (build 15) — macOS released 2026-09-29, iOS released 2026-09-30_
+
+- **Safari 27:** tapping Start did nothing on macOS 27 / iOS 27.1; scans start normally again
+- **Purchases:** a subscription bought or restored in the app now unlocks MAX in the
+  extension directly (checked through the app with StoreKit), and Restore Purchase
+  completes inside the extension
+- **iPhone Duo:** split-screen scanning and results on the unfolded display
+
 ## [3.18] — Unreleased
 
 _Chrome 3.18 · Extension 3.18 · Safari app 3.18 (build 14) — submitted on every platform, awaiting review_
